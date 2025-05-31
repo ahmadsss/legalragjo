@@ -58,7 +58,7 @@ def generate_answer(question, context):
 الإجابة:"""
 
     completion = openai.chat.completions.create(
-        model="gpt-4-turbo",
+        model="gpt-4.1",
         messages=[
             {"role": "system", "content": "أجب فقط بناءً على النصوص القانونية المعروضة."},
             {"role": "user", "content": prompt}
