@@ -4,6 +4,7 @@ import openai
 import weaviate
 from dotenv import load_dotenv
 import os
+from weaviate.auth import AuthApiKey  # ✅ ADD THIS AT THE TOP
 
 # Load credentials (optional for local testing)
 load_dotenv()
@@ -20,9 +21,8 @@ st.write("🔍 WEAVIATE_API_KEY:", repr(WEAVIATE_API_KEY))
 # Connect to Weaviate Cloud (v1.30.4 and below)
 client = weaviate.Client(
     url=WEAVIATE_URL,
-    auth_client_secret=weaviate.AuthApiKey(api_key=WEAVIATE_API_KEY)
+    auth_client_secret=AuthApiKey(api_key=WEAVIATE_API_KEY)
 )
-
 # Embed query
 def embed_query(text):
     response = openai.embeddings.create(
