@@ -20,7 +20,7 @@ WEAVIATE_URL = st.secrets["WEAVIATE_URL"]
 # Connect to Weaviate Cloud (v1.30.4 and below)
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url=WEAVIATE_URL,
-    auth_credentials=Auth.api_key(weaviate_api_key),
+    auth_credentials=Auth.api_key(WEAVIATE_API_KEY),
 )
 # Embed query
 def embed_query(text):
