@@ -14,8 +14,8 @@ WEAVIATE_URL = "https://kvpz5nvzqewg1rtv2qwjsg.c0.europe-west3.gcp.weaviate.clou
 
 # Connect to Weaviate Cloud
 client = weaviate.connect_to_weaviate_cloud(
-    cluster_url=WEAVIATE_URL,
-    auth_credentials=Auth.api_key(WEAVIATE_API_KEY),
+    cluster_url="https://kvpz5nvzqewg1rtv2qwjsg.c0.europe-west3.gcp.weaviate.cloud",
+    auth_credentials=Auth.api_key("MUV1leWNYVHCSrkNGNbG43eflSiDzXBpl4Sf"),
 )
 
 # Embed query
