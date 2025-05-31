@@ -55,7 +55,7 @@ def generate_answer(question, context):
 # السؤال: {question}
 
 # الإجابة:"""
-prompt =""
+    prompt =""
     completion = openai.chat.completions.create(
         model="gpt-4.1",
         messages=[
