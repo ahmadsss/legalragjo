@@ -8,9 +8,9 @@ import os
 
 # Load credentials
 load_dotenv()
-openai.api_key = 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
-WEAVIATE_API_KEY = MUV1leWNYVHCSrkNGNbG43eflSiDzXBpl4Sf
-WEAVIATE_URL = https://kvpz5nvzqewg1rtv2qwjsg.c0.europe-west3.gcp.weaviate.cloud
+openai.api_key = "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"
+WEAVIATE_API_KEY = "MUV1leWNYVHCSrkNGNbG43eflSiDzXBpl4Sf"
+WEAVIATE_URL = "https://kvpz5nvzqewg1rtv2qwjsg.c0.europe-west3.gcp.weaviate.cloud"
 
 # Connect to Weaviate Cloud
 client = weaviate.connect_to_weaviate_cloud(
