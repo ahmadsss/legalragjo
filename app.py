@@ -33,7 +33,7 @@ def embed_query(text):
 # Run semantic search
 def retrieve_articles(query, limit=5):
     vector = embed_query(query)
-    results = client.collections.get("legalragjo").query.near_vector(
+    results = client.collections.get("LawArticle").query.near_vector(
         near_vector=vector,
         limit=limit
     )
