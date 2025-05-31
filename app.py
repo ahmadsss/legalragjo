@@ -15,7 +15,8 @@ WEAVIATE_URL = st.secrets["WEAVIATE_URL"]
 
 # DEBUG (Optional)
 # st.write("🔍 DEBUG:", repr(WEAVIATE_URL))
-
+st.write("🔍 WEAVIATE_URL:", repr(WEAVIATE_URL))
+st.write("🔍 WEAVIATE_API_KEY:", repr(WEAVIATE_API_KEY))
 # Connect to Weaviate Cloud (v1.30.4 and below)
 client = weaviate.Client(
     url=WEAVIATE_URL,
