@@ -2,20 +2,24 @@
 import streamlit as st
 import openai
 import weaviate
-from weaviate.classes.init import Auth
 from dotenv import load_dotenv
 import os
 
-# Load credentials
+# Load credentials (optional for local testing)
 load_dotenv()
-openai.api_key = "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"
-WEAVIATE_API_KEY = "MUV1leWNYVHCSrkNGNbG43eflSiDzXBpl4Sf"
-WEAVIATE_URL = "https://kvpz5nvzqewg1rtv2qwjsg.c0.europe-west3.gcp.weaviate.cloud"
 
-# Connect to Weaviate Cloud
-client = weaviate.connect_to_weaviate_cloud(
-    cluster_url="https://kvpz5nvzqewg1rtv2qwjsg.c0.europe-west3.gcp.weaviate.cloud",
-    auth_credentials=Auth.api_key("MUV1leWNYVHCSrkNGNbG43eflSiDzXBpl4Sf"),
+# Use secrets for security (set via Streamlit Cloud)
+openai.api_key = st.secrets["OPENAI_API_KEY"]
+WEAVIATE_API_KEY = st.secrets["WEAVIATE_API_KEY"]
+WEAVIATE_URL = st.secrets["WEAVIATE_URL"]
+
+# DEBUG (Optional)
+# st.write("🔍 DEBUG:", repr(WEAVIATE_URL))
+
+# Connect to Weaviate Cloud (v1.30.4 and below)
+client = weaviate.Client(
+    url=WEAVIATE_URL,
+    auth_client_secret=weaviate.AuthApiKey(api_key=WEAVIATE_API_KEY)
 )
 
 # Embed query
