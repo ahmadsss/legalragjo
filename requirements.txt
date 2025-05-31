@@ -1,4 +1,4 @@
 streamlit
 openai
-weaviate-client==4.14.4
+weaviate-client==3.25.4
 python-dotenv
