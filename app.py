@@ -1,4 +1,3 @@
-# app.py
 import streamlit as st
 import openai
 import weaviate
@@ -6,23 +5,21 @@ from dotenv import load_dotenv
 import os
 from weaviate.classes.init import Auth
 
-# Load credentials (optional for local testing)
+# Load .env (optional for local dev)
 load_dotenv()
 
-# Use secrets for security (set via Streamlit Cloud)
+# Load secrets from Streamlit Cloud
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 WEAVIATE_API_KEY = st.secrets["WEAVIATE_API_KEY"]
 WEAVIATE_URL = st.secrets["WEAVIATE_URL"]
 
-# DEBUG (Optional)
-# st.write("🔍 DEBUG:", repr(WEAVIATE_URL))
-
-# Connect to Weaviate Cloud (v1.30.4 and below)
+# Connect to Weaviate Cloud
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url=WEAVIATE_URL,
     auth_credentials=Auth.api_key(WEAVIATE_API_KEY),
 )
-# Embed query
+
+# 🔎 Embed query using OpenAI
 def embed_query(text):
     response = openai.embeddings.create(
         input=text,
@@ -30,7 +27,7 @@ def embed_query(text):
     )
     return response.data[0].embedding
 
-# Run semantic search
+# 🔍 Semantic retrieval from Weaviate
 def retrieve_articles(query, limit=5):
     vector = embed_query(query)
     results = client.collections.get("LawArticle").query.near_vector(
@@ -39,27 +36,37 @@ def retrieve_articles(query, limit=5):
     )
     return results.objects
 
-# Generate answer
+# 🧠 Generate a legal-style answer using GPT-4-turbo
 def generate_answer(question, context):
     context_text = "\n\n".join(
         f"المادة {o.properties.get('article_number', '')}: {o.properties.get('article_title', '')}\n{o.properties.get('text', '')}"
         for o in context
     )
-    prompt = f"""أنت مساعد قانوني ذكي. استنادًا إلى المواد التالية من القانون، أجب على السؤال التالي باللغة العربية الفصحى:
+
+    prompt = f"""أنت مساعد قانوني ذكي. استنادًا فقط إلى النصوص القانونية التالية، أجب عن السؤال التالي بدقة وبأسلوب واضح ومبسط.
+
+إذا وردت مادة تشير إلى تعديل مادة أخرى (مثل: "يلغى نص المادة كذا ويستعاض عنه")، فافترض أن النص الجديد هو التعديل الفعلي. وضّح التغيير الحقيقي بين النص المعدل والقديم إن وجد.
+
+لا تضف أي معلومة من خارج النصوص المقدمة، ولا تذكر أرقام المواد أو العناوين إلا إذا كانت مذكورة بوضوح.
+
+النصوص القانونية:
 
 {context_text}
 
 السؤال: {question}
 
 الإجابة:"""
+
     completion = openai.chat.completions.create(
-        model="gpt-4",
-        messages=[{"role": "system", "content": "أجب فقط بناءً على النصوص القانونية المتاحة."},
-                  {"role": "user", "content": prompt}]
+        model="gpt-4-turbo",
+        messages=[
+            {"role": "system", "content": "أجب فقط بناءً على النصوص القانونية المعروضة."},
+            {"role": "user", "content": prompt}
+        ]
     )
     return completion.choices[0].message.content.strip()
 
-# Streamlit UI
+# 🌐 Streamlit Web UI
 st.set_page_config(layout="centered", page_title="مساعد قانوني ذكي")
 st.markdown("<h1 style='text-align: right; direction: rtl;'>💼 مساعد القانون الأردني</h1>", unsafe_allow_html=True)
 
@@ -68,6 +75,7 @@ question = st.text_input("✍️ اكتب سؤالك القانوني هنا:", 
 if question:
     with st.spinner("🔍 يتم البحث في النصوص القانونية..."):
         articles = retrieve_articles(question)
+
     if not articles:
         st.error("لم يتم العثور على مواد قانونية مناسبة لهذا السؤال.")
     else:
