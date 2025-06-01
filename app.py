@@ -111,6 +111,6 @@ if question:
                     unsafe_allow_html=True
                 )
                 st.markdown(
-                    f"<div style='direction: rtl; text-align: right; background-color: #f8f9fa; border-radius: 8px; padding: 8px; margin-bottom: 10px;'>{obj.properties.get('text').replace(chr(10), '<br>')}</div>",
+                    f"<div style='direction: rtl; text-align: right; background-color: #012348; border-radius: 8px; padding: 8px; margin-bottom: 10px;'>{obj.properties.get('text').replace(chr(10), '<br>')}</div>",
                     unsafe_allow_html=True
                 )
