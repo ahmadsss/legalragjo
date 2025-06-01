@@ -105,13 +105,31 @@ if question:
         )
 
 
+        # with st.expander("📜 عرض المواد القانونية المسترجعة"):
+        #     for obj in articles:
+        #         st.markdown(
+        #     f"<div style='direction: rtl; text-align: right;'><b>المادة {obj.properties.get('article_number')}</b> - {obj.properties.get('article_title')}</div>",
+        #         unsafe_allow_html=True
+        #     )
+        #         st.markdown(
+        #     f"<div style='direction: rtl; text-align: right; background-color: #012348; border-radius: 8px; padding: 8px; margin-bottom: 10px;'>{obj.properties.get('text').replace(chr(10), '<br>')}</div>",
+        #         unsafe_allow_html=True
+        #     )
         with st.expander("📜 عرض المواد القانونية المسترجعة"):
+            st.markdown("<div style='direction: rtl; text-align: right;'>", unsafe_allow_html=True)
+
             for obj in articles:
+                if obj.properties.get("article_title") == "LAW METADATA":
+                    continue
+
                 st.markdown(
-            f"<div style='direction: rtl; text-align: right;'><b>المادة {obj.properties.get('article_number')}</b> - {obj.properties.get('article_title')}</div>",
+            f"<b>المادة {obj.properties.get('article_number')}</b> - {obj.properties.get('article_title')}",
                 unsafe_allow_html=True
             )
                 st.markdown(
-            f"<div style='direction: rtl; text-align: right; background-color: #012348; border-radius: 8px; padding: 8px; margin-bottom: 10px;'>{obj.properties.get('text').replace(chr(10), '<br>')}</div>",
+            f"<div style='background-color: #012348; border-radius: 8px; padding: 8px; margin-bottom: 10px;'>{obj.properties.get('text').replace(chr(10), '<br>')}</div>",
                 unsafe_allow_html=True
             )
+
+            st.markdown("</div>", unsafe_allow_html=True)
+
