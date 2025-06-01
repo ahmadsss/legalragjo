@@ -84,7 +84,7 @@ st.markdown("<h1 style='text-align: right; direction: rtl;'>💼 مساعد ال
 st.markdown("<div style='direction: rtl; text-align: right;'>✍️ اكتب سؤالك القانوني هنا:</div>", unsafe_allow_html=True)
 
 question = st.text_input(
-    # "✍️",  # رمز فقط
+    # "",  # رمز فقط
     key="query",
     placeholder="اكتب سؤالك هنا بالعربية...",
     help="اكتب سؤالك القانوني بصيغة واضحة"
