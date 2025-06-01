@@ -75,19 +75,11 @@ def generate_answer(question, context):
 st.set_page_config(layout="centered", page_title="مساعد قانوني ذكي")
 st.markdown("<h1 style='text-align: right; direction: rtl;'>💼 مساعد القانون الأردني</h1>", unsafe_allow_html=True)
 
-# question = st.text_input(
-#     "✍️ اكتب سؤالك القانوني هنا:",
-#     key="query",
-#     placeholder="ما التعديل الذي جرى على المادة 8؟",
-#     help="اكتب سؤالك بالعربية",
-# )
-st.markdown("<div style='direction: rtl; text-align: right;'>✍️ اكتب سؤالك القانوني هنا:</div>", unsafe_allow_html=True)
-
 question = st.text_input(
-    "✍️",  # رمز فقط
+    "✍️ اكتب سؤالك القانوني هنا:",
     key="query",
-    placeholder="اكتب سؤالك هنا بالعربية...",
-    help="اكتب سؤالك القانوني بصيغة واضحة"
+    placeholder="ما التعديل الذي جرى على المادة 8؟",
+    help="اكتب سؤالك بالعربية",
 )
 
 if question:
