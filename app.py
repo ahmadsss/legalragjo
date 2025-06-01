@@ -102,14 +102,16 @@ if question:
 
         st.markdown("### 🧠 الإجابة", unsafe_allow_html=True)
         # RTL-formatted answer, preserving paragraph breaks and Arabic quoting
-        st.markdown(
-            f"""
-            <div style='direction: rtl; text-align: right; font-size: 1.15em; line-height: 2.1;'>
-            {answer.replace(chr(10), '<br>')}
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+    st.markdown(
+    f"""
+    <div style='direction: rtl; text-align: right; font-size: 1.15em; line-height: 2.1;
+        background-color: #dff0d8; border-radius: 10px; padding: 18px 16px; margin: 10px 0 18px 0;
+        border: 1px solid #b2d8b2;'>
+        {answer.replace(chr(10), '<br>')}
+    </div>
+    """,
+    unsafe_allow_html=True
+    )
 
         with st.expander("📜 عرض المواد القانونية المسترجعة"):
             for obj in articles:
