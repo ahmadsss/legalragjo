@@ -65,8 +65,8 @@ def generate_answer(question, context):
     completion = openai.chat.completions.create(
         model="gpt-4.1",
         messages=[
-            {"role": "system", "content": "أجب فقط بناءً على النصوص القانونية المعروضة."},
-            {"role": "user", "content": prompt}
+            {"role": "system", "content": prompt},
+            {"role": "user", "content": ""}
         ]
     )
     return completion.choices[0].message.content.strip()
@@ -78,7 +78,7 @@ st.markdown("<h1 style='text-align: right; direction: rtl;'>💼 مساعد ال
 question = st.text_input(
     "✍️ اكتب سؤالك القانوني هنا:",
     key="query",
-    placeholder="ما التعديل الذي جرى على المادة 8؟",
+    placeholder="هل الشهادة وحدها تكفي لإثبات حق مالي كبير؟",
     help="اكتب سؤالك بالعربية",
 )
 
