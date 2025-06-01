@@ -34,7 +34,9 @@ def retrieve_articles(query, limit=15):
         near_vector=vector,
         limit=limit
     )
-    return results.objects
+    # ✅ استبعاد LAW METADATA من النتيجة مبكرًا
+    filtered = [obj for obj in results.objects if obj.properties.get("article_title") != "LAW METADATA"]
+    return filtered
 
 # 🧠 Generate a legal-style answer using GPT-4
 def generate_answer(question, context):
