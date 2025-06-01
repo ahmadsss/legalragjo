@@ -4,6 +4,7 @@ import weaviate
 from dotenv import load_dotenv
 import os
 from weaviate.classes.init import Auth
+import streamlit.components.v1 as components
 
 # Load .env (optional for local dev)
 load_dotenv()
@@ -80,14 +81,14 @@ st.markdown("<h1 style='text-align: right; direction: rtl;'>💼 مساعد ال
 #     placeholder="ما التعديل الذي جرى على المادة 8؟",
 #     help="اكتب سؤالك بالعربية",
 # )
-st.markdown("<div style='direction: rtl; text-align: right;'>", unsafe_allow_html=True)
+st.markdown("<div style='direction: rtl; text-align: right;'>✍️ اكتب سؤالك القانوني هنا:</div>", unsafe_allow_html=True)
+
 question = st.text_input(
-    label="✍️ اكتب سؤالك القانوني هنا:",
+    "✍️",  # رمز فقط
     key="query",
-    placeholder="ما التعديل الذي جرى على المادة 8؟",
-    help="اكتب سؤالك بالعربية",
+    placeholder="اكتب سؤالك هنا بالعربية...",
+    help="اكتب سؤالك القانوني بصيغة واضحة"
 )
-st.markdown("</div>", unsafe_allow_html=True)
 
 if question:
     with st.spinner("🔍 يتم البحث في النصوص القانونية..."):
