@@ -74,12 +74,20 @@ def generate_answer(question, context):
 st.set_page_config(layout="centered", page_title="مساعد قانوني ذكي")
 st.markdown("<h1 style='text-align: right; direction: rtl;'>💼 مساعد القانون الأردني</h1>", unsafe_allow_html=True)
 
+# question = st.text_input(
+#     "✍️ اكتب سؤالك القانوني هنا:",
+#     key="query",
+#     placeholder="ما التعديل الذي جرى على المادة 8؟",
+#     help="اكتب سؤالك بالعربية",
+# )
+st.markdown("<div style='direction: rtl; text-align: right;'>", unsafe_allow_html=True)
 question = st.text_input(
-    "✍️ اكتب سؤالك القانوني هنا:",
+    label="✍️ اكتب سؤالك القانوني هنا:",
     key="query",
     placeholder="ما التعديل الذي جرى على المادة 8؟",
     help="اكتب سؤالك بالعربية",
 )
+st.markdown("</div>", unsafe_allow_html=True)
 
 if question:
     with st.spinner("🔍 يتم البحث في النصوص القانونية..."):
@@ -105,31 +113,13 @@ if question:
         )
 
 
-        # with st.expander("📜 عرض المواد القانونية المسترجعة"):
-        #     for obj in articles:
-        #         st.markdown(
-        #     f"<div style='direction: rtl; text-align: right;'><b>المادة {obj.properties.get('article_number')}</b> - {obj.properties.get('article_title')}</div>",
-        #         unsafe_allow_html=True
-        #     )
-        #         st.markdown(
-        #     f"<div style='direction: rtl; text-align: right; background-color: #012348; border-radius: 8px; padding: 8px; margin-bottom: 10px;'>{obj.properties.get('text').replace(chr(10), '<br>')}</div>",
-        #         unsafe_allow_html=True
-        #     )
         with st.expander("📜 عرض المواد القانونية المسترجعة"):
-            st.markdown("<div style='direction: rtl; text-align: right;'>", unsafe_allow_html=True)
-
             for obj in articles:
-                if obj.properties.get("article_title") == "LAW METADATA":
-                    continue
-
                 st.markdown(
-            f"<b>المادة {obj.properties.get('article_number')}</b> - {obj.properties.get('article_title')}",
+            f"<div style='direction: rtl; text-align: right;'><b>المادة {obj.properties.get('article_number')}</b> - {obj.properties.get('article_title')}</div>",
                 unsafe_allow_html=True
             )
                 st.markdown(
-            f"<div style='background-color: #012348; border-radius: 8px; padding: 8px; margin-bottom: 10px;'>{obj.properties.get('text').replace(chr(10), '<br>')}</div>",
+            f"<div style='direction: rtl; text-align: right; background-color: #012348; border-radius: 8px; padding: 8px; margin-bottom: 10px;'>{obj.properties.get('text').replace(chr(10), '<br>')}</div>",
                 unsafe_allow_html=True
             )
-
-            st.markdown("</div>", unsafe_allow_html=True)
-
