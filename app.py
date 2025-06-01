@@ -43,26 +43,15 @@ def generate_answer(question, context):
         for o in context
     )
 
-    prompt = f"""You are a legal expert and consultant. For every legal question:
+    prompt = f"""
+    أنت مساعد قانوني ذكي، مهمتك الإجابة بدقة وباختصار على أسئلة المستخدم فقط بالاعتماد على النصوص المستخرجة أو أي نص قانوني تم استرجاعه من الوثائق. 
+يجب أن تكون الإجابة:
+- واضحة ومباشرة ومختصرة.
+- تستند إلى نص قانوني محدد، مع ذكر رقم المادة أو الفقرة متى أمكن.
+- باللغة التي ورد بها السؤال.
+- إذا لم يوجد نص صريح أو إجابة دقيقة في النصوص المستخرجة، وضّح ذلك للمستخدم.
 
-    Base your answer only on the content of the retrieved chunks from the vector database. Do not answer from general knowledge or pre-training unless explicitly instructed.
-
-    For each legal point you provide, cite or quote the relevant retrieved chunk (article, clause, or paragraph) that supports your answer.
-
-    Structure your answer as a numbered list of clear legal situations or rights, each point referencing the supporting chunk.
-
-    If multiple chunks address the same issue (e.g., general and specific provisions), present them together, clarifying their relationship.
-
-    Always mention any legal steps required before action (e.g., giving notice, going to court) if stated in the retrieved chunks.
-
-    After the main list, briefly explain why these chunks are relevant to the question, referencing their position (general rule, special rule, etc.).
-
-    End every answer with: "هذه المعلومات للاستدلال فقط وليست استشارة قانونية رسمية."
-
-    Use the tone, depth, and legal structure of an expert consultant, aiming for the detail and clarity seen in the best large language model (LLM) responses.
-
-    Never miss a general legal rule from the retrieved chunks that may apply, even if a special rule exists.
-    Answer according to the retrieved chunks. Do not rely on your own legal knowledge. Structure your answer by legal points, and cite the chunk or article for every claim. Use professional legal language and reasoning.
+تجنب الشرح المطوّل أو إضافة خلفيات قانونية عامة ما لم يُطلب منك ذلك صراحة
  النصوص القانونية:
  
 {context_text}
