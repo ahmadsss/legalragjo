@@ -4,7 +4,6 @@ import weaviate
 from dotenv import load_dotenv
 import os
 from weaviate.classes.init import Auth
-import streamlit.components.v1 as components
 
 # Load .env (optional for local dev)
 load_dotenv()
