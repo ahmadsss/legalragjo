@@ -101,9 +101,13 @@ if question:
             answer = generate_answer(question, articles)
 
         st.markdown("### 🧠 الإجابة", unsafe_allow_html=True)
-        # RTL-formatted answer
+        # RTL-formatted answer, preserving paragraph breaks and Arabic quoting
         st.markdown(
-            f"<div style='direction: rtl; text-align: right; font-size: 1.15em;'>{answer}</div>",
+            f"""
+            <div style='direction: rtl; text-align: right; font-size: 1.15em; line-height: 2.1;'>
+            {answer.replace(chr(10), '<br>')}
+            </div>
+            """,
             unsafe_allow_html=True
         )
 
@@ -114,6 +118,6 @@ if question:
                     unsafe_allow_html=True
                 )
                 st.markdown(
-                    f"<div style='direction: rtl; text-align: right; background-color: #f8f9fa; border-radius: 8px; padding: 8px; margin-bottom: 10px;'>{obj.properties.get('text')}</div>",
+                    f"<div style='direction: rtl; text-align: right; background-color: #f8f9fa; border-radius: 8px; padding: 8px; margin-bottom: 10px;'>{obj.properties.get('text').replace(chr(10), '<br>')}</div>",
                     unsafe_allow_html=True
                 )
