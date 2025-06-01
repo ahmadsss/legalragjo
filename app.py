@@ -158,7 +158,7 @@ with st.expander("📜 عرض المواد القانونية المسترجعة
             f"<b>المادة {obj.properties.get('article_number')}</b> - {obj.properties.get('article_title')}",
             unsafe_allow_html=True
         )
-         st.markdown(
+        st.markdown(
             f"<div style='background-color: #012348; border-radius: 8px; padding: 8px; margin-bottom: 10px;'>{obj.properties.get('text').replace(chr(10), '<br>')}</div>",
              unsafe_allow_html=True
         )
