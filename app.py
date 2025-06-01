@@ -105,8 +105,8 @@ if question:
         st.markdown(
             f"""
             <div style='direction: rtl; text-align: right; font-size: 1.15em; line-height: 2.1;
-            background-color: #e8f4fd; border-radius: 10px; padding: 18px 16px; margin: 10px 0 18px 0;
-            border: 1px solid #b6e0fe; color: #184a6a;'>
+            background-color: #ccfacb; border-radius: 10px; padding: 18px 16px; margin: 10px 0 18px 0;
+            border: 1px solid #b6e0fe; color: #181c1f;'>
             {answer.replace(chr(10), '<br>')}
         </div>
         """,
