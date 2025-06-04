@@ -119,8 +119,7 @@ if question:
 
                 # 🏷️ Header: قانون + مادة + عنوان
                 st.markdown(
-                    f"<div style='direction: rtl; text-align: right; font-weight: bold;'>"
-                    f"{law_title} - المادة {article_number} - {article_title}</div>",
+                    f"<div style='direction: rtl; text-align: right; font-weight: bold;'>{law_title} - المادة {article_number} - {article_title}</div>",
                     unsafe_allow_html=True
                 )
 
