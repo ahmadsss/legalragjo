@@ -111,7 +111,7 @@ if question:
                 article_body = obj.properties.get("text", "")
 
                 # 🧼 Remove "المادة N" header from body if present
-                cleaned_body = re.sub(rf"^المادة\s+{article_number}\s*", "", article_body).strip()
+                cleaned_body = re.sub(rf"^المادة\s+{article_number}\s*", article_body).strip()
 
                 # 🧷 Combined heading inside blue box
                 full_heading = f"{law_title} - المادة {article_number}: {article_title}"
