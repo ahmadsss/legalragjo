@@ -111,7 +111,7 @@ if question:
                 article_body = obj.properties.get("text", "")
 
                 # 🧼 Remove "المادة N" header from body if present
-                cleaned_body = re.sub(rf"^المادة\s+{article_number}\s*","", article_body).strip()
+                cleaned_body = re.sub(rf"^المادة\s+{article_number}\s*"," ", article_body).strip()
 
                 # 🧷 Combined heading inside blue box
                 full_heading = f"{law_title} - المادة {article_number}: {article_title}"
@@ -121,7 +121,7 @@ if question:
                     <div style='direction: rtl; text-align: right; background-color: #012348; color: white;
                     border-radius: 8px; padding: 10px; margin-bottom: 12px; font-size: 1.05em; line-height: 1.9;'>
                     <strong>{full_heading}</strong>
-                    {cleaned_body.replace(chr(10), '<br><br>')}
+                    {cleaned_body.replace(chr(10), '<br>')}
                     </div>
                     """,
                     unsafe_allow_html=True
