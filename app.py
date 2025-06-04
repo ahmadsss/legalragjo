@@ -108,8 +108,8 @@ if question:
         with st.expander("📜 عرض المواد القانونية المسترجعة"):
             for obj in articles:
                 st.markdown(
-            f"<div style='direction: rtl; text-align: right;'><b>المادة {obj.properties.get('article_number')}</b> - {obj.properties.get('article_title')}</div>",
-                unsafe_allow_html=True
+             f"<div style='direction: rtl; text-align: right;'><b>المادة {obj.properties.get('article_number')}</b> - {obj.properties.get('article_title')}</div>",
+                    unsafe_allow_html=True
             )
                 st.markdown(
             f"<div style='direction: rtl; text-align: right; background-color: #012348; border-radius: 8px; padding: 8px; margin-bottom: 10px;'>{obj.properties.get('text').replace(chr(10), '<br>')}</div>",
