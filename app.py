@@ -121,7 +121,7 @@ if question:
                     <div style='direction: rtl; text-align: right; background-color: #012348; color: white;
                     border-radius: 8px; padding: 10px; margin-bottom: 12px; font-size: 1.05em; line-height: 1.9;'>
                     <strong>{full_heading}</strong>
-                    {cleaned_body.replace(chr(10), '<br>')}
+                    {cleaned_body.replace(chr(10), '<br><br>')}
                     </div>
                     """,
                     unsafe_allow_html=True
