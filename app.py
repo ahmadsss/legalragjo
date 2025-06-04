@@ -120,7 +120,7 @@ if question:
                     f"""
                     <div style='direction: rtl; text-align: right; background-color: #012348; color: white;
                     border-radius: 8px; padding: 10px; margin-bottom: 12px; font-size: 1.05em; line-height: 1.9;'>
-                    <strong>{full_heading}</strong><br><br>
+                    <strong>{full_heading}</strong><br>
                     {cleaned_body.replace(chr(10), '<br>')}
                     </div>
                     """,
