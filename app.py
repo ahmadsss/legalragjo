@@ -29,7 +29,7 @@ def embed_query(text):
     return response.data[0].embedding
 
 # 🔍 Semantic retrieval from Weaviate
-def retrieve_articles(query, limit=15):
+def retrieve_articles(query, limit=7):
     vector = embed_query(query)
     results = client.collections.get("LawArticle").query.near_vector(
         near_vector=vector,
