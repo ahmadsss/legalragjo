@@ -105,13 +105,37 @@ if question:
         )
 
 
+        # with st.expander("📜 عرض المواد القانونية المسترجعة"):
+        #     for obj in articles:
+        #         st.markdown(
+        #      f"<div style='direction: rtl; text-align: right;'><b>المادة {obj.properties.get('article_number')}</b> - {obj.properties.get('article_title')}</div>",
+        #             unsafe_allow_html=True
+        #     )
+        #         st.markdown(
+        #     f"<div style='direction: rtl; text-align: right; background-color: #012348; border-radius: 8px; padding: 8px; margin-bottom: 10px;'>{obj.properties.get('text').replace(chr(10), '<br>')}</div>",
+        #         unsafe_allow_html=True
+        #     )
         with st.expander("📜 عرض المواد القانونية المسترجعة"):
             for obj in articles:
+                law_title = obj.properties.get("law_title", "قانون غير معروف")
+                article_number = obj.properties.get("article_number", "")
+                article_title = obj.properties.get("article_title", "")
+                article_body = obj.properties.get("text", "")
+
+        # 🧠 Remove redundant "المادة 123" from the body
+                cleaned_body = re.sub(rf"^المادة\s+{article_number}\s*", "", article_body).strip()
+
+        # 🏷️ Show heading with law title + article number + title
                 st.markdown(
-             f"<div style='direction: rtl; text-align: right;'><b>المادة {obj.properties.get('article_number')}</b> - {obj.properties.get('article_title')}</div>",
-                    unsafe_allow_html=True
-            )
-                st.markdown(
-            f"<div style='direction: rtl; text-align: right; background-color: #012348; border-radius: 8px; padding: 8px; margin-bottom: 10px;'>{obj.properties.get('text').replace(chr(10), '<br>')}</div>",
+                f"<div style='direction: rtl; text-align: right; font-weight: bold;'>"
+                f"{law_title} - المادة {article_number} - {article_title}</div>",
                 unsafe_allow_html=True
             )
+
+                st.markdown(
+                f"<div style='direction: rtl; text-align: right; background-color: #012348; "
+                f"border-radius: 8px; padding: 8px; margin-bottom: 10px;'>"
+                f"{cleaned_body.replace(chr(10), '<br>')}</div>",
+                unsafe_allow_html=True
+            )
+
